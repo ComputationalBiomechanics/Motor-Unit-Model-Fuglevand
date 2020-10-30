@@ -2,8 +2,9 @@ close all
 clear all
 clc
 
-data_directory = '/Volumes/DATA2/New_Model/Fuglevand/N_120_CV_20';
-code_directory = '/Users/akira/Documents/Github/Motor-Unit-Model-Fuglevand/';
+data_directory = fullfile(pwd, 'N_120_CV_20');
+code_directory = pwd;
+
 %load ('Input')
 Fs = 1000;
 t = 0:1/Fs:15;

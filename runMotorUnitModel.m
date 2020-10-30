@@ -10,8 +10,7 @@ RP_temp = 10:10:150;
 
 
 data_directory = fullfile(pwd,'N_120_CV_10');
-code_directory = fullfile(pwd,'Motor-Unit-Model-Fuglevand/');
-home_directory = pwd;
+code_directory = pwd;
 
 if ~isfolder(data_directory); mkdir(data_directory); end
 if ~isfolder(code_directory); mkdir(code_directory); end
@@ -39,7 +38,7 @@ for k = 0:length(amp_temp)
     
     Data = cell(1,10);
     tic
-    cd(home_directory)
+%     cd(home_directory)
     for i = 1:10
         % Run motor unit model        
         output = MotorUnitModel(t,U,modelParameter,Fs);       
