@@ -9,11 +9,15 @@ amp_temp = [0.05 0.1:0.1:1];
 RP_temp = 10:10:150;
 
 
-data_directory = '/Volumes/DATA2/New_Model/Fuglevand/N_120_CV_10';
-code_directory = '/Users/akira/Documents/Github/Motor-Unit-Model-Fuglevand/';
+data_directory = fullfile(pwd,'N_120_CV_10');
+code_directory = fullfile(pwd,'Motor-Unit-Model-Fuglevand/');
+home_directory = pwd;
 
+if ~isfolder(data_directory); mkdir(data_directory); end
+if ~isfolder(code_directory); mkdir(code_directory); end
+    
 maxForce = 1.9758e+04;
-for k = 0 %:length(amp_temp)
+for k = 0:length(amp_temp)
     trialN = k; %+30; 
     % predefine model parameters
     amp = amp_temp(k+1); %0.15 for 0.05
@@ -35,6 +39,7 @@ for k = 0 %:length(amp_temp)
     
     Data = cell(1,10);
     tic
+    cd(home_directory)
     for i = 1:10
         % Run motor unit model        
         output = MotorUnitModel(t,U,modelParameter,Fs);       
@@ -44,7 +49,7 @@ for k = 0 %:length(amp_temp)
     
     cd (data_directory)
     save(['Trial_' num2str(trialN)],'Data','-v7.3')
-    cd (code_directory)
+    cd(code_directory)
     
     output_temp = Data{1};
     
